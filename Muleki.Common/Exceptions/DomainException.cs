@@ -1,5 +1,3 @@
-using System;
-
 namespace Muleki.Common.Exceptions
 {
     public class DomainException : Exception
