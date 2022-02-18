@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Muleki.Domain", "Muleki.Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Muleki.Common", "Muleki.Common\Muleki.Common.csproj", "{62273094-BEDC-4FEB-A9CE-68286D38BFAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Muleki.Infra", "Muleki.Infra\Muleki.Infra.csproj", "{0C83F5E5-228C-4A2C-BD95-9F06E4F258A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,5 +30,9 @@ Global
 		{62273094-BEDC-4FEB-A9CE-68286D38BFAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62273094-BEDC-4FEB-A9CE-68286D38BFAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62273094-BEDC-4FEB-A9CE-68286D38BFAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C83F5E5-228C-4A2C-BD95-9F06E4F258A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C83F5E5-228C-4A2C-BD95-9F06E4F258A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C83F5E5-228C-4A2C-BD95-9F06E4F258A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C83F5E5-228C-4A2C-BD95-9F06E4F258A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
