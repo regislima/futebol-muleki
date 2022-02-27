@@ -12,6 +12,11 @@ namespace Muleki.Domain.Entities
         public string Password { get; set; }
         public Role Role { get; set; }
 
+        #region OneToMany
+        public List<Score> Scores { get; set; }
+        public List<PlayerFootball> PlayerFootballs { get; set; }
+        #endregion
+
         // Entity Framework Core
         protected Player() { }
 

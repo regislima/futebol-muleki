@@ -6,7 +6,9 @@ namespace Muleki.Domain.Entities
 {
     public class PlayerFootball : BaseEntity
     {
+        public int PlayerId { get; set; }
         public Player Player { get; set; }
+        public int FootballId { get; set; }
         public Football Football { get; set; }
 
         // Entity Framework Core

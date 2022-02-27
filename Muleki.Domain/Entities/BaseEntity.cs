@@ -2,8 +2,8 @@ namespace Muleki.Domain.Entities
 {
     public abstract class BaseEntity
     {
-        protected long Id { get; set; }
-        protected DateTime Created_At { get; set; }
+        public long Id { get; set; }
+        public DateTime Created_At { get; set; }
         public DateTime Updated_At { get; set; }
         public DateTime Deleted_At { get; set; }
         

@@ -7,11 +7,15 @@ namespace Muleki.Domain.Entities
     public class Score : BaseEntity
     {
         public DateTime Date { get; set; }
-        public int Attribute { get; set; }
+        public ScoreAttribute Attribute { get; set; }
         public decimal Note { get; set; }
         public int Quantity { get; set; }
         public decimal Total { get; set; }
+        
+        #region OneToOne
+        public int PlayerId { get; set; }
         public Player Player { get; set; }
+        #endregion
 
         // Entity Framework Core
         public Score() { }

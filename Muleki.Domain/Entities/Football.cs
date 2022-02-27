@@ -8,6 +8,10 @@ namespace Muleki.Domain.Entities
     {
         public DateTime Date { get; set; }
 
+        #region OnetoMany
+        public List<PlayerFootball> PlayerFootballs { get; set; }
+        #endregion
+
         // Entity Framework Core
         public Football() { }
 

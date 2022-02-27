@@ -8,7 +8,11 @@ namespace Muleki.Domain.Entities
     {
         public decimal Income { get; set; }
         public decimal Expense { get; set; }
+        
+        #region OneToOne
+        public int FootballId { get; set; }
         public Football Football { get; set; }
+        #endregion
 
         // Entity Framework Core
         public Safebox() { }
