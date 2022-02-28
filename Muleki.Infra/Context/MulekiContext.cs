@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Muleki.Common.Extensions;
 using Muleki.Domain.Entities;
+using Muleki.Infra.Mappings;
 
 namespace Muleki.Infra.Context
 {
@@ -24,7 +25,11 @@ namespace Muleki.Infra.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration();
+            builder.ApplyConfiguration(new PlayerMap());
+            builder.ApplyConfiguration(new ScoreMap());
+            builder.ApplyConfiguration(new PlayerFootballMap());
+            builder.ApplyConfiguration(new FootballMap());
+            builder.ApplyConfiguration(new SafeboxMap());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -33,24 +38,10 @@ namespace Muleki.Infra.Context
                 throw new Exception("Arquivo de configuração não encontrado");
             else
             {
-                switch (_configuration["Configs:Provider"])
-                {
-                    case "mysql":
-                    case "mariadb":
-                        optionsBuilder.UseMySql(
-                            @"Server=172.17.0.1;Port=3306;Database=managerapi;Uid=regis;Pwd=root",
-                            new MySqlServerVersion(new Version(10, 6, 4))
-                        );
-                        break;
-
-                    case "sqlserver":
-                        optionsBuilder.UseSqlServer(_configuration.GetConnectionString("SqlServerConnection"));
-                        break;
-                    
-                    default:
-                        optionsBuilder.UseInMemoryDatabase(_configuration.GetConnectionString("InMemoryConnection"));
-                        break;
-                }
+                optionsBuilder.UseMySql(
+                    @"Server=127.0.0.1;Port=3306;Database=mulekiapi;Uid=root;Pwd=root",
+                    new MySqlServerVersion(new Version(10, 6, 4))
+                );
             }
     }
 }
