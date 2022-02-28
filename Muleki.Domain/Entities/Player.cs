@@ -18,7 +18,7 @@ namespace Muleki.Domain.Entities
         #endregion
 
         // Entity Framework Core
-        protected Player() { }
+        public Player() { }
 
         public Player(long id, string name, string nick, string email, string password, Role role)
         {
