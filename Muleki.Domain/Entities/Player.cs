@@ -14,7 +14,7 @@ namespace Muleki.Domain.Entities
 
         #region OneToMany
         public List<Score> Scores { get; set; }
-        public List<PlayerFootball> PlayerFootballs { get; set; }
+        public List<PlayerFootball> PlayerFootball { get; set; }
         #endregion
 
         // Entity Framework Core
