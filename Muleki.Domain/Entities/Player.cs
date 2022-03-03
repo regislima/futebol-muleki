@@ -13,7 +13,6 @@ namespace Muleki.Domain.Entities
         public Role Role { get; set; }
 
         #region OneToMany
-        public List<Score>? Scores { get; set; }
         public List<PlayerFootball>? PlayerFootball { get; set; }
         #endregion
 

@@ -12,9 +12,9 @@ namespace Muleki.Domain.Entities
         public long Quantity { get; set; }
         public decimal Total { get; set; }
         
-        #region OneToOne
-        public long PlayerId { get; set; }
-        public Player Player { get; set; }
+        #region ManyToOne
+        public long PlayerFootballId { get; set; }
+        public PlayerFootball PlayerFootball { get; set; }
         #endregion
 
         // Entity Framework Core
