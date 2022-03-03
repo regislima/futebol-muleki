@@ -7,14 +7,14 @@ namespace Muleki.Domain.Entities
     public class Player : BaseEntity
     {
         public string Name { get; set; }
-        public string Nick { get; set; }
+        public string? Nick { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public Role Role { get; set; }
 
         #region OneToMany
-        public List<Score> Scores { get; set; }
-        public List<PlayerFootball> PlayerFootball { get; set; }
+        public List<Score>? Scores { get; set; }
+        public List<PlayerFootball>? PlayerFootball { get; set; }
         #endregion
 
         // Entity Framework Core

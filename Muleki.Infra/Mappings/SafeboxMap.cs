@@ -11,6 +11,11 @@ namespace Muleki.Infra.Mappings
             builder.ToTable("safeboxes");
             builder.HasKey(safebox => safebox.Id);
 
+            builder.Property(safebox => safebox.Id)
+                .UseMySqlIdentityColumn()
+                .HasColumnName("id")
+                .HasColumnType("BIGINT");
+
             builder.Property(safebox => safebox.Income)
                 .IsRequired()
                 .HasColumnName("income")
@@ -37,7 +42,7 @@ namespace Muleki.Infra.Mappings
                 .HasColumnType("DATETIME");
             
             builder.HasOne(safebox => safebox.Football)
-                .WithOne(safebox => safebox.Safebox)
+                .WithOne()
                 .HasForeignKey<Safebox>(safebox => safebox.FootballId)
                 .IsRequired();
         }

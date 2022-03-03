@@ -7,12 +7,7 @@ namespace Muleki.Domain.Entities
     public class Football : BaseEntity
     {
         public DateTime Date { get; set; }
-
-        #region Relations
-        public int SafeboxId { get; set; }
-        public Safebox Safebox { get; set; }
         public List<PlayerFootball> PlayerFootball { get; set; }
-        #endregion
 
         // Entity Framework Core
         public Football() { }

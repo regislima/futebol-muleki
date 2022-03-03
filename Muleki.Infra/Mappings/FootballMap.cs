@@ -8,12 +8,13 @@ namespace Muleki.Infra.Mappings
     {
         public void Configure(EntityTypeBuilder<Football> builder)
         {
-            builder.ToTable("Footballs");
+            builder.ToTable("footballs");
             builder.HasKey(football => football.Id);
 
             builder.Property(football => football.Id)
                 .UseMySqlIdentityColumn()
-                .HasColumnType("INT");
+                .HasColumnName("id")
+                .HasColumnType("BIGINT");
             
             builder.Property(football => football.Date)
                 .IsRequired()

@@ -9,11 +9,11 @@ namespace Muleki.Domain.Entities
         public DateTime Date { get; set; }
         public ScoreAttribute Attribute { get; set; }
         public decimal Note { get; set; }
-        public int Quantity { get; set; }
+        public long Quantity { get; set; }
         public decimal Total { get; set; }
         
         #region OneToOne
-        public int PlayerId { get; set; }
+        public long PlayerId { get; set; }
         public Player Player { get; set; }
         #endregion
 

@@ -13,7 +13,8 @@ namespace Muleki.Infra.Mappings
 
             builder.Property(score => score.Id)
                 .UseMySqlIdentityColumn()
-                .HasColumnType("INT");
+                .HasColumnName("id")
+                .HasColumnType("BIGINT");
 
             builder.Property(score => score.Date)
                 .IsRequired()
@@ -57,7 +58,7 @@ namespace Muleki.Infra.Mappings
                 .HasColumnType("DATETIME");
             
             builder.HasOne(score => score.Player)
-                .WithMany(score => score.Scores)
+                .WithMany(player => player.Scores)
                 .HasForeignKey(score => score.PlayerId)
                 .IsRequired();
         }

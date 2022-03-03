@@ -4,8 +4,8 @@ namespace Muleki.Domain.Entities
     {
         public long Id { get; set; }
         public DateTime Created_At { get; set; }
-        public DateTime Updated_At { get; set; }
-        public DateTime Deleted_At { get; set; }
+        public DateTime? Updated_At { get; set; }
+        public DateTime? Deleted_At { get; set; }
         
         internal List<string> _errors;
         public IReadOnlyCollection<string> Errors => _errors;

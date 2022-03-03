@@ -13,7 +13,8 @@ namespace Muleki.Infra.Mappings
 
             builder.Property(player => player.Id)
                 .UseMySqlIdentityColumn()
-                .HasColumnType("INT");
+                .HasColumnName("id")
+                .HasColumnType("BIGINT");
             
             builder.Property(player => player.Name)
                 .IsRequired()
@@ -22,6 +23,7 @@ namespace Muleki.Infra.Mappings
                 .HasColumnType("VARCHAR");
             
             builder.Property(player => player.Nick)
+                .IsRequired(false)
                 .HasMaxLength(50)
                 .HasColumnName("nick")
                 .HasColumnType("VARCHAR");
@@ -34,7 +36,7 @@ namespace Muleki.Infra.Mappings
             
             builder.Property(player => player.Password)
                 .IsRequired()
-                .HasMaxLength(10)
+                .HasMaxLength(100)
                 .HasColumnName("password")
                 .HasColumnType("VARCHAR");
             
