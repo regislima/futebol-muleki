@@ -57,10 +57,9 @@ namespace Muleki.Infra.Mappings
                 .HasColumnName("deleted_at")
                 .HasColumnType("DATETIME");
             
-            builder.HasOne(score => score.Player)
-                .WithMany(player => player.Scores)
-                .HasForeignKey(score => score.PlayerId)
-                .IsRequired();
+            builder.HasOne(score => score.PlayerFootball)
+                .WithMany(playerFootball => playerFootball.Scores)
+                .HasForeignKey(score => score.PlayerFootballId);
         }
     }
 }

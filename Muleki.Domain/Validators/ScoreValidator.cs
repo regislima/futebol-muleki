@@ -34,7 +34,7 @@ namespace Muleki.Domain.Validators
                 .NotEmpty()
                 .WithMessage("Total não pode ser nulo ou vazio");
             
-            RuleFor(score => score.Player)
+            RuleFor(score => score.PlayerFootball)
                 .NotNull()
                 .WithMessage("Jogador deve ser informado");
         }
