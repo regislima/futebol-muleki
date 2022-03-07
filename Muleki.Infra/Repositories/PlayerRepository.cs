@@ -37,6 +37,11 @@ namespace Muleki.Infra.Repositories
                 .ToListAsync();
         }
 
+        public Task<List<Football>> FindFootballs(long playerId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<List<Score>> FindScores(long playerId)
         {
             throw new NotImplementedException();

@@ -8,5 +8,6 @@ namespace Muleki.Infra.Interfaces
         Task<List<Player>> FindByNick(string nick);
         Task<Player> FindByEmail(string email);
         Task<List<Score>> FindScores(long playerId);
+        Task<List<Football>> FindFootballs(long playerId);
     }
 }
