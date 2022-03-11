@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Muleki.Common.Extensions;
 using Muleki.Domain.Entities;
 using Muleki.Infra.Context;
 using Muleki.Infra.Interfaces;
@@ -37,14 +38,28 @@ namespace Muleki.Infra.Repositories
                 .ToListAsync();
         }
 
-        public Task<List<Football>> FindFootballs(long playerId)
+        public async Task<List<Football>> FindFootballs(long playerId)
         {
-            throw new NotImplementedException();
+            var players = await _context.PlayersFootballs.Where(player => player.PlayerId == playerId)
+                .AsNoTracking()
+                .Select(player => player.FootballId)
+                .ToListAsync();
+
+            return await _context.Footballs.Where(foot => players.Contains(foot.Id))
+                .AsNoTracking()
+                .ToListAsync();
         }
 
-        public Task<List<Score>> FindScores(long playerId)
+        public async Task<List<Score>> FindScores(long playerId)
         {
-            throw new NotImplementedException();
+            var players = await _context.PlayersFootballs.Where(player => player.PlayerId == playerId)
+                .AsNoTracking()
+                .Select(player => player.Id)
+                .ToListAsync();
+
+            return await _context.Scores.Where(score => players.Contains(score.PlayerFootballId))
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }
