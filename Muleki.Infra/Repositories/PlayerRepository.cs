@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Muleki.Common.Extensions;
 using Muleki.Domain.Entities;
 using Muleki.Infra.Context;
 using Muleki.Infra.Interfaces;
@@ -39,24 +40,42 @@ namespace Muleki.Infra.Repositories
 
         public async Task<List<Football>> FindFootballs(long playerId)
         {
+<<<<<<< HEAD
             var idList = await _context.PlayersFootballs.Where(player => player.PlayerId == playerId)
                 .AsNoTracking()
                 .Select(player => player.FootballId)
                 .ToListAsync();
             
             return await _context.Footballs.Where(football => idList.Contains(football.Id))
+=======
+            var players = await _context.PlayersFootballs.Where(player => player.PlayerId == playerId)
+                .AsNoTracking()
+                .Select(player => player.FootballId)
+                .ToListAsync();
+
+            return await _context.Footballs.Where(foot => players.Contains(foot.Id))
+>>>>>>> aee8792a22c1979dadc951e548b73dd3c13374d2
                 .AsNoTracking()
                 .ToListAsync();
         }
 
         public async Task<List<Score>> FindScores(long playerId)
         {
+<<<<<<< HEAD
             var idList = await _context.PlayersFootballs.Where(player => player.PlayerId == playerId)
                 .AsNoTracking()
                 .Select(player => player.FootballId)
                 .ToListAsync();
             
             return await _context.Scores.Where(score => idList.Contains(score.Id))
+=======
+            var players = await _context.PlayersFootballs.Where(player => player.PlayerId == playerId)
+                .AsNoTracking()
+                .Select(player => player.Id)
+                .ToListAsync();
+
+            return await _context.Scores.Where(score => players.Contains(score.PlayerFootballId))
+>>>>>>> aee8792a22c1979dadc951e548b73dd3c13374d2
                 .AsNoTracking()
                 .ToListAsync();
         }
