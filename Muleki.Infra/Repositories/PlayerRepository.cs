@@ -37,14 +37,28 @@ namespace Muleki.Infra.Repositories
                 .ToListAsync();
         }
 
-        public Task<List<Football>> FindFootballs(long playerId)
+        public async Task<List<Football>> FindFootballs(long playerId)
         {
-            throw new NotImplementedException();
+            var idList = await _context.PlayersFootballs.Where(player => player.PlayerId == playerId)
+                .AsNoTracking()
+                .Select(player => player.FootballId)
+                .ToListAsync();
+            
+            return await _context.Footballs.Where(football => idList.Contains(football.Id))
+                .AsNoTracking()
+                .ToListAsync();
         }
 
-        public Task<List<Score>> FindScores(long playerId)
+        public async Task<List<Score>> FindScores(long playerId)
         {
-            throw new NotImplementedException();
+            var idList = await _context.PlayersFootballs.Where(player => player.PlayerId == playerId)
+                .AsNoTracking()
+                .Select(player => player.FootballId)
+                .ToListAsync();
+            
+            return await _context.Scores.Where(score => idList.Contains(score.Id))
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }
