@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Muleki.Common.Extensions;
 using Muleki.Domain.Entities;
 using Muleki.Infra.Context;
 using Muleki.Infra.Interfaces;

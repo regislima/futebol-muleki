@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Muleki.Common", "Muleki.Com
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Muleki.Infra", "Muleki.Infra\Muleki.Infra.csproj", "{0C83F5E5-228C-4A2C-BD95-9F06E4F258A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Muleki.Service", "Muleki.Service\Muleki.Service.csproj", "{EEF1D201-7547-43AD-AC1B-78C7E58B24AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Muleki.Security", "Muleki.Security\Muleki.Security.csproj", "{1AB7D176-7065-4C06-B334-DDE51FBCF9F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,5 +38,13 @@ Global
 		{0C83F5E5-228C-4A2C-BD95-9F06E4F258A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C83F5E5-228C-4A2C-BD95-9F06E4F258A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C83F5E5-228C-4A2C-BD95-9F06E4F258A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEF1D201-7547-43AD-AC1B-78C7E58B24AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEF1D201-7547-43AD-AC1B-78C7E58B24AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEF1D201-7547-43AD-AC1B-78C7E58B24AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEF1D201-7547-43AD-AC1B-78C7E58B24AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AB7D176-7065-4C06-B334-DDE51FBCF9F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AB7D176-7065-4C06-B334-DDE51FBCF9F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AB7D176-7065-4C06-B334-DDE51FBCF9F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AB7D176-7065-4C06-B334-DDE51FBCF9F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
