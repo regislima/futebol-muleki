@@ -48,7 +48,7 @@ namespace Muleki.Domain.Validators
                 .MinimumLength(6)
                 .WithMessage("Senha deve ter mínimo de 6 caracteres")
                 
-                .MaximumLength(15)
+                .MaximumLength(200)
                 .WithMessage("Senha deve ter máximo de 15 caracteres");
 
             RuleFor(player => player.Role)

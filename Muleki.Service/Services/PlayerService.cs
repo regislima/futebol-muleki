@@ -1,3 +1,8 @@
+using AutoMapper;
+using Muleki.Common.Exceptions;
+using Muleki.Common.Extensions;
+using Muleki.Domain.Entities;
+using Muleki.Infra.Interfaces;
 using Muleki.Service.DTO;
 using Muleki.Service.Interfaces;
 
@@ -5,54 +10,102 @@ namespace Muleki.Service.Services
 {
     public class PlayerService : IPlayerService
     {
-        public Task<PlayerDto> Create(PlayerDto objDto)
+        private readonly IMapper _mapper;
+        private readonly IPlayerRepository _playerRepository;
+
+        public PlayerService(IMapper mapper, IPlayerRepository playerRepository)
         {
-            throw new NotImplementedException();
+            _mapper = mapper;
+            _playerRepository = playerRepository;
         }
 
-        public Task<List<PlayerDto>> FindAll()
+        public async Task<PlayerDto> Create(PlayerDto objDto)
         {
-            throw new NotImplementedException();
+            Player player = await _playerRepository.FindByEmail(objDto.Email);
+
+            if (!player.IsNull())
+                throw new DomainException("Já existe cadastro com email informado");
+            
+            player = _mapper.Map<Player>(objDto);
+            player.Created_At = DateTime.Now;
+            player.Validate();
+            
+            Player playerCreated = await _playerRepository.Create(player);
+
+            return _mapper.Map<PlayerDto>(playerCreated);
         }
 
-        public Task<PlayerDto> FindByEmail(string email)
+        public async Task<List<PlayerDto>> FindAll()
         {
-            throw new NotImplementedException();
+            List<Player> players = await _playerRepository.FindAll();
+            
+            return _mapper.Map<List<PlayerDto>>(players);
         }
 
-        public Task<PlayerDto> FindById(long id)
+        public async Task<PlayerDto> FindByEmail(string email)
         {
-            throw new NotImplementedException();
+            Player player = await _playerRepository.FindByEmail(email);
+
+            return _mapper.Map<PlayerDto>(player);
         }
 
-        public Task<List<PlayerDto>> FindByName(string name)
+        public async Task<PlayerDto> FindById(long id)
         {
-            throw new NotImplementedException();
+            Player player = await _playerRepository.FindById(id);
+
+            return _mapper.Map<PlayerDto>(player);
         }
 
-        public Task<List<PlayerDto>> FindByNick(string nick)
+        public async Task<List<PlayerDto>> FindByName(string name)
         {
-            throw new NotImplementedException();
+            List<Player> players = await _playerRepository.FindByName(name);
+            
+            return _mapper.Map<List<PlayerDto>>(players);
         }
 
-        public Task<List<FootballDto>> FindFootballs(long playerId)
+        public async Task<List<PlayerDto>> FindByNick(string nick)
         {
-            throw new NotImplementedException();
+            List<Player> players = await _playerRepository.FindByNick(nick);
+            
+            return _mapper.Map<List<PlayerDto>>(players);
         }
 
-        public Task<List<ScoreDto>> FindScores(long playerId)
-        {
-            throw new NotImplementedException();
+        public async Task<List<FootballDto>> FindFootballs(long playerId)
+        {   
+            List<Football> footballs = await _playerRepository.FindFootballs(playerId);
+            
+            return _mapper.Map<List<FootballDto>>(footballs);
         }
 
-        public Task Remove(long id)
+        public async Task<List<ScoreDto>> FindScores(long playerId)
         {
-            throw new NotImplementedException();
+            List<Score> scores = await _playerRepository.FindScores(playerId);
+            
+            return _mapper.Map<List<ScoreDto>>(scores);
         }
 
-        public Task<PlayerDto> Update(PlayerDto objDTO)
+        public async Task Remove(long id)
         {
-            throw new NotImplementedException();
+            await _playerRepository.Remove(id);
+        }
+
+        public async Task<PlayerDto> Update(PlayerDto objDTO)
+        {
+            Player player = await _playerRepository.FindById(objDTO.Id);
+
+            if (player.IsNull())
+                throw new DomainException("Usuário não encontrado");
+            
+            Player playerEmail = await _playerRepository.FindByEmail(objDTO.Email);
+
+            if (!playerEmail.IsNull())
+                throw new DomainException("Já existe cadastro com email informado");
+            
+            player = _mapper.Map<Player>(objDTO);
+            player.Updated_At = DateTime.Now;
+            player.Validate();
+
+            return _mapper.Map<PlayerDto>(player);
         }
     }
 }
