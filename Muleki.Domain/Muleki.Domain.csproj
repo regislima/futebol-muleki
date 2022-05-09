@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Muleki.Common\Muleki.Common.csproj" />
+    <ProjectReference Include="..\Muleki.Exceptions\Muleki.Exceptions.csproj" />
   </ItemGroup>
 
 </Project>

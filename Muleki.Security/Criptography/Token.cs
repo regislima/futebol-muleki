@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -33,6 +34,15 @@ namespace Muleki.Security.Criptography
             SecurityToken token = jwtSecurityTokenHandler.CreateToken(tokenDescriptor);
 
             return jwtSecurityTokenHandler.WriteToken(token);
+        }
+
+        public static string GenerateSecretKey()
+        {
+            byte[] secret = new byte[32];
+
+            RandomNumberGenerator.Create().GetBytes(secret);
+            
+            return Convert.ToBase64String(secret);
         }
     }
 }

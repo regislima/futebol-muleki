@@ -1,8 +1,9 @@
 using AutoMapper;
-using Muleki.Common.Exceptions;
 using Muleki.Common.Extensions;
 using Muleki.Domain.Entities;
+using Muleki.Exceptions;
 using Muleki.Infra.Interfaces;
+using Muleki.Security.Criptography;
 using Muleki.Service.DTO;
 using Muleki.Service.Interfaces;
 
@@ -26,7 +27,11 @@ namespace Muleki.Service.Services
             if (!player.IsNull())
                 throw new DomainException("Já existe cadastro com email informado");
             
+            Crypt.CreatePasswordHash(objDto.Password, out byte[] PasswordHash, out byte[] PasswordSalt);
+            
             player = _mapper.Map<Player>(objDto);
+            player.PasswordHash = Convert.ToBase64String(PasswordHash);
+            player.PasswordSalt = Convert.ToBase64String(PasswordSalt);
             player.Created_At = DateTime.Now;
             player.Validate();
             

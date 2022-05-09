@@ -4,6 +4,8 @@
     <ProjectReference Include="..\Muleki.Domain\Muleki.Domain.csproj" />
     <ProjectReference Include="..\Muleki.Infra\Muleki.Infra.csproj" />
     <ProjectReference Include="..\Muleki.Common\Muleki.Common.csproj" />
+    <ProjectReference Include="..\Muleki.Exceptions\Muleki.Exceptions.csproj" />
+    <ProjectReference Include="..\Muleki.Security\Muleki.Security.csproj" />
   </ItemGroup>
 
   <ItemGroup>

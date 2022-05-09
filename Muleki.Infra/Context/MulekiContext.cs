@@ -33,8 +33,15 @@ namespace Muleki.Infra.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // Development (use with apply migrations)
             optionsBuilder.UseMySql(
                 @"Server=127.0.0.1;Port=3306;Database=mulekiapi;Uid=root;Pwd=root",
+                new MySqlServerVersion(new Version(10, 6, 5))
+            );
+
+            // Production
+            optionsBuilder.UseMySql(
+                _configuration.GetConnectionString("MySqlConnection"),
                 new MySqlServerVersion(new Version(10, 6, 5))
             );
         }

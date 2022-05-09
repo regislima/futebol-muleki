@@ -1,6 +1,6 @@
 using FluentValidation.Results;
-using Muleki.Common.Exceptions;
 using Muleki.Domain.Validators;
+using Muleki.Exceptions;
 
 namespace Muleki.Domain.Entities
 {
@@ -9,7 +9,8 @@ namespace Muleki.Domain.Entities
         public string Name { get; set; }
         public string? Nick { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
+        public string PasswordHash { get; set; }
+        public string PasswordSalt { get; set; }
         public Role Role { get; set; }
 
         #region OneToMany
@@ -19,13 +20,14 @@ namespace Muleki.Domain.Entities
         // Entity Framework Core
         public Player() { }
 
-        public Player(long id, string name, string nick, string email, string password, Role role)
+        public Player(long id, string name, string nick, string email, string passwordHash, string passwordSalt, Role role)
         {
             Id = id;
             Name = name;
             Nick = nick;
             Email = email;
-            Password = password;
+            PasswordHash = passwordHash;
+            PasswordSalt = passwordSalt;
             Role = role;
         }
 

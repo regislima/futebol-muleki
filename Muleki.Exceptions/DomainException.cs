@@ -1,4 +1,4 @@
-namespace Muleki.Common.Exceptions
+namespace Muleki.Exceptions
 {
     public class DomainException : Exception
     {

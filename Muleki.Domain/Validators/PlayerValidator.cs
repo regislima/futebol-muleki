@@ -40,7 +40,7 @@ namespace Muleki.Domain.Validators
                 .EmailAddress()
                 .WithMessage("Email inválido");
             
-            RuleFor(player => player.Password)
+            RuleFor(player => player.PasswordHash)
                 .NotNull()
                 .NotEmpty()
                 .WithMessage("Senha não pode ser nulo ou vazio")
@@ -50,6 +50,11 @@ namespace Muleki.Domain.Validators
                 
                 .MaximumLength(200)
                 .WithMessage("Senha deve ter máximo de 15 caracteres");
+            
+            RuleFor(player => player.PasswordSalt)
+                .NotNull()
+                .NotEmpty()
+                .WithMessage("Salt não pode ser nulo ou vazio");
 
             RuleFor(player => player.Role)
                 .NotNull()

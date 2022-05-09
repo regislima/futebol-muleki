@@ -34,10 +34,16 @@ namespace Muleki.Infra.Mappings
                 .HasColumnName("email")
                 .HasColumnType("VARCHAR");
             
-            builder.Property(player => player.Password)
+            builder.Property(player => player.PasswordHash)
                 .IsRequired()
-                .HasMaxLength(100)
-                .HasColumnName("password")
+                .HasMaxLength(200)
+                .HasColumnName("password_hash")
+                .HasColumnType("VARCHAR");
+
+            builder.Property(player => player.PasswordHash)
+                .IsRequired()
+                .HasMaxLength(240)
+                .HasColumnName("password_salt")
                 .HasColumnType("VARCHAR");
             
             builder.Property(player => player.Role)
@@ -63,7 +69,13 @@ namespace Muleki.Infra.Mappings
             builder.HasData
             (
                 // Usuário root - Senha: 123456789
-                new Player(1, "Root", "Root", "root@email.com", "FeKw08M4keuw8e9gnsQZQgwg4yDOlMZfvIwzEkSOsiU=", Role.ADMINISTRATOR)
+                new Player
+                (
+                    1, "Root", "Root", "root@email.com",
+                    "mV/+IST6+80UcjdFuaUN4CZ7mcHiClpYndmlayqk8nNYH025/PE+P/+0ulgG49fQB0ZxkH/98arOA1of40Oo7g==",
+                    "gGOO/obFwf50zaJ9LhZ0fMnV8ztfLicMBcaIhEswjK+0IdNQaN0ezEmVCk/T1PTnK/6Ahz8iKmtAGjmTq/ewKPopMKLBMC0G5rAXJNeZs1db7OXoip0zL82vmKucJhNDgiKXBpy/SGxKWI81vrcCKzY+9VZIOQLnuBTrezsZPkg=",
+                    Role.ADMINISTRATOR
+                )
             );
         }
     }

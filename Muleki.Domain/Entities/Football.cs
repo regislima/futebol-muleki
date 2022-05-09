@@ -1,6 +1,6 @@
 using FluentValidation.Results;
-using Muleki.Common.Exceptions;
 using Muleki.Domain.Validators;
+using Muleki.Exceptions;
 
 namespace Muleki.Domain.Entities
 {
