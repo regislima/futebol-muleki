@@ -39,14 +39,14 @@ namespace Muleki.Api.Controllers
                 PlayerDto playerDto = await _playerService.FindByEmail(authInput.Email);
                 
                 if (playerDto.IsNull())
-                    return BadRequest(DataResponse.Error(authInput, "Email ou senha inválido"));
+                    return BadRequest(DataResponse.Error(null, "Email ou senha inválido"));
                 
                 AuthDto authDto = _mapper.Map<AuthDto>(authInput);
                 
                 if (!_authService.VerifyPasswordHash(authDto))
-                    return BadRequest(DataResponse.AuthorizationError(authInput, "Email ou senha incorretos."));
+                    return BadRequest(DataResponse.AuthorizationError(null, "Email ou senha incorretos."));
                 
-                authDto.PlayerDto = playerDto;
+                authDto.Player = playerDto;
                 authDto.Token = _authService.GenerateJwtToken(playerDto);
 
                 return Ok(DataResponse.Success(authDto));

@@ -40,7 +40,7 @@ namespace Muleki.Infra.Mappings
                 .HasColumnName("password_hash")
                 .HasColumnType("VARCHAR");
 
-            builder.Property(player => player.PasswordHash)
+            builder.Property(player => player.PasswordSalt)
                 .IsRequired()
                 .HasMaxLength(240)
                 .HasColumnName("password_salt")
@@ -72,8 +72,8 @@ namespace Muleki.Infra.Mappings
                 new Player
                 (
                     1, "Root", "Root", "root@email.com",
-                    "mV/+IST6+80UcjdFuaUN4CZ7mcHiClpYndmlayqk8nNYH025/PE+P/+0ulgG49fQB0ZxkH/98arOA1of40Oo7g==",
-                    "gGOO/obFwf50zaJ9LhZ0fMnV8ztfLicMBcaIhEswjK+0IdNQaN0ezEmVCk/T1PTnK/6Ahz8iKmtAGjmTq/ewKPopMKLBMC0G5rAXJNeZs1db7OXoip0zL82vmKucJhNDgiKXBpy/SGxKWI81vrcCKzY+9VZIOQLnuBTrezsZPkg=",
+                    "39kX8Xb50tg4bMTpGTNQnBB548+J95bjlFi0bA2Qm6dakj3cim7xLtTDxINUd6PHdRYckEoranIweWyvg3n30w==",
+                    "GU2xX9kpeVjBEBTi9hAaAK2tNmVXS4gbnXjrcgqHamwIMdOBsqAvquYYHVr55pp6bZ56vZ28gH31d2GZCZz8SdVT7oreUBRewI4nEv2rAhkY07JEF+oHU+DTO+WbYFDqh2Qzj+JPYUuPrMsOBl+LHp4RsKGyAduIOLWh4yKbaoU=",
                     Role.ADMINISTRATOR
                 )
             );

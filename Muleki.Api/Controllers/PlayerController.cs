@@ -25,7 +25,6 @@ namespace Muleki.Api.Controllers
 
         [HttpPost]
         [Route("v1/player/create")]
-        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create([FromBody] PlayerCreateInput playerCreateInput)
         {
             try

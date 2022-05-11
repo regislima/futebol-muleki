@@ -1,5 +1,3 @@
-using System.Text;
-using System.Net.Mime;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using Muleki.Domain.Entities;
@@ -32,10 +30,10 @@ namespace Muleki.Service.Services
         public bool VerifyPasswordHash(AuthDto authDto)
         {
             Player player = _playerRepository.FindByEmail(authDto.Email).Result;
-            byte[] passworhHash = Encoding.UTF8.GetBytes(player.PasswordHash);
-            byte[] passworhSalt = Encoding.UTF8.GetBytes(player.PasswordSalt);
+            byte[] passwordHash = Convert.FromBase64String(player.PasswordHash);
+            byte[] passwordSalt = Convert.FromBase64String(player.PasswordSalt);
             
-            return Crypt.VerifyPasswordHash(authDto.Password, passworhHash, passworhSalt);
+            return Crypt.VerifyPasswordHash(authDto.Password, passwordHash, passwordSalt);
         }
     }
 }
