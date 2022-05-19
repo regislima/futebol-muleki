@@ -19,12 +19,12 @@ namespace Muleki.Infra.Mappings
             builder.Property(safebox => safebox.Income)
                 .IsRequired()
                 .HasColumnName("income")
-                .HasColumnType("DECIMAL(5.2)");
+                .HasColumnType("DECIMAL(5,2)");
             
             builder.Property(safebox => safebox.Expense)
                 .IsRequired()
                 .HasColumnName("expense")
-                .HasColumnType("DECIMAL(5.2)");
+                .HasColumnType("DECIMAL(5,2)");
 
             builder.Property(safebox => safebox.Created_At)
                 .IsRequired()

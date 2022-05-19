@@ -1,4 +1,4 @@
-using Muleki.Service.DTO;
+using Muleki.Service.Dto;
 
 namespace Muleki.Service.Interfaces
 {

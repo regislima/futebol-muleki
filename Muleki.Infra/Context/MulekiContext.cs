@@ -45,7 +45,6 @@ namespace Muleki.Infra.Context
                 _configuration.GetConnectionString("MySqlConnection"),
                 new MySqlServerVersion(new Version(10, 6, 5))
             );
-            
         }
     }
 }

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Muleki.Service.DTO
+namespace Muleki.Service.Dto
 {
     public class AuthDto
     {

@@ -1,4 +1,4 @@
-namespace Muleki.Service.DTO
+namespace Muleki.Service.Dto
 {
     public class FootballDto
     {

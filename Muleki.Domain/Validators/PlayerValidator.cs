@@ -12,28 +12,17 @@ namespace Muleki.Domain.Validators
                 .WithMessage("Jogador não pode ser nulo");
             
             RuleFor(player => player.Name)
-                .NotNull()
                 .NotEmpty()
                 .WithMessage("Nome não pode ser nulo ou vazio")
 
-                .MinimumLength(2)
-                .WithMessage("Nome deve ter no mínimo 2 caracteres")
-                
-                .MaximumLength(50)
-                .WithMessage("Nome deve ter no máximo 50 caracteres");
+                .Length(2, 50)
+                .WithMessage("Nome deve ter no mínimo 2 e no máximo 50 caracteres");
 
-            RuleFor(player => player.Nick)
-                .NotEmpty()
-                .WithMessage("Apelido não pode ser vazio")
-                
-                .MinimumLength(2)
-                .WithMessage("Apelido deve ter no mínimo 2 caracteres")
-                
-                .MaximumLength(50)
-                .WithMessage("Apelido deve ter no máximo 50 caracteres");
+            RuleFor(player => player.Nick)                
+                .Length(2, 50)
+                .WithMessage("Nick deve ter no mínimo 2 e no máximo 50 caracteres");
             
             RuleFor(player => player.Email)
-                .NotNull()
                 .NotEmpty()
                 .WithMessage("Nome não pode ser nulo ou vazio")
 
@@ -41,18 +30,10 @@ namespace Muleki.Domain.Validators
                 .WithMessage("Email inválido");
             
             RuleFor(player => player.PasswordHash)
-                .NotNull()
                 .NotEmpty()
-                .WithMessage("Senha não pode ser nulo ou vazio")
-
-                .MinimumLength(6)
-                .WithMessage("Senha deve ter mínimo de 6 caracteres")
-                
-                .MaximumLength(200)
-                .WithMessage("Senha deve ter máximo de 15 caracteres");
+                .WithMessage("Senha não pode ser nula ou vazia");
             
             RuleFor(player => player.PasswordSalt)
-                .NotNull()
                 .NotEmpty()
                 .WithMessage("Salt não pode ser nulo ou vazio");
 

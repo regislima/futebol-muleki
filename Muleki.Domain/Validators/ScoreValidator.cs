@@ -17,12 +17,10 @@ namespace Muleki.Domain.Validators
                 .WithMessage("Atributo deve ser informado");
 
             RuleFor(score => score.Note)
-                .NotNull()
                 .NotEmpty()
                 .WithMessage("Nota não pode nulo ou vazio");
             
             RuleFor(score => score.Quantity)
-                .NotNull()
                 .NotEmpty()
                 .WithMessage("Nome não pode ser nulo ou vazio")
 
@@ -30,7 +28,6 @@ namespace Muleki.Domain.Validators
                 .WithMessage("Quantidade não pode ser negativo");
             
             RuleFor(score => score.Total)
-                .NotNull()
                 .NotEmpty()
                 .WithMessage("Total não pode ser nulo ou vazio");
             

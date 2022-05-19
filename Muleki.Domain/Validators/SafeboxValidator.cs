@@ -12,7 +12,6 @@ namespace Muleki.Domain.Validators
                 .WithMessage("Cofre não pode ser nulo");
             
             RuleFor(safebox => safebox.Income)
-                .NotNull()
                 .NotEmpty()
                 .WithMessage("Receita não pode ser nulo ou vazio")
 
@@ -20,7 +19,6 @@ namespace Muleki.Domain.Validators
                 .WithMessage("Receita não pode ser negativo");
             
             RuleFor(safebox => safebox.Expense)
-                .NotNull()
                 .NotEmpty()
                 .WithMessage("Despesa não pode ser nulo ou vazio")
 

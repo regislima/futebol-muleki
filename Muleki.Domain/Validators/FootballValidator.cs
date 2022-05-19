@@ -12,7 +12,6 @@ namespace Muleki.Domain.Validators
                 .WithMessage("Futebol não pode ser nulo");
             
             RuleFor(football => football.Date)
-                .NotNull()
                 .NotEmpty()
                 .WithMessage("Data do futebol não pode ser nulo ou vazio");
         }

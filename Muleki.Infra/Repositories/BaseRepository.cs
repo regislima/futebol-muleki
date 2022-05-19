@@ -40,15 +40,10 @@ namespace Muleki.Infra.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        public virtual async Task Remove(long id)
+        public virtual async Task Remove(T entity)
         {
-            var entity = await FindById(id);
-
-            if (!entity.IsNull())
-            {
-                _context.Remove(entity);
-                await _unitOfWork.CompleteAsync();
-            }
+            _context.Remove(entity);
+            await _unitOfWork.CompleteAsync();
         }
 
         public virtual async Task<T> Update(T entity)

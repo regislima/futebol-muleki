@@ -5,7 +5,7 @@ using Muleki.Api.InputModels.Auth;
 using Muleki.Common.Communication;
 using Muleki.Common.Extensions;
 using Muleki.Exceptions;
-using Muleki.Service.DTO;
+using Muleki.Service.Dto;
 using Muleki.Service.Interfaces;
 using Muleki.Service.Services;
 

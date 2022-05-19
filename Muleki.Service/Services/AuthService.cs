@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Muleki.Domain.Entities;
 using Muleki.Infra.Interfaces;
 using Muleki.Security.Criptography;
-using Muleki.Service.DTO;
+using Muleki.Service.Dto;
 
 namespace Muleki.Service.Services
 {

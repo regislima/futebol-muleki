@@ -4,7 +4,7 @@ using Muleki.Domain.Entities;
 using Muleki.Exceptions;
 using Muleki.Infra.Interfaces;
 using Muleki.Security.Criptography;
-using Muleki.Service.DTO;
+using Muleki.Service.Dto;
 using Muleki.Service.Interfaces;
 
 namespace Muleki.Service.Services
@@ -89,26 +89,39 @@ namespace Muleki.Service.Services
             return _mapper.Map<List<ScoreDto>>(scores);
         }
 
-        public async Task Remove(long id)
+        public async Task<PlayerDto> Remove(long id)
         {
-            await _playerRepository.Remove(id);
-        }
-
-        public async Task<PlayerDto> Update(PlayerDto objDTO)
-        {
-            Player player = await _playerRepository.FindById(objDTO.Id);
+            Player player = await _playerRepository.FindById(id);
 
             if (player.IsNull())
-                throw new DomainException("Usuário não encontrado");
+                throw new DomainException("Jogador não encontrado");
             
-            Player playerEmail = await _playerRepository.FindByEmail(objDTO.Email);
+            await _playerRepository.Remove(player);
 
-            if (!playerEmail.IsNull())
-                throw new DomainException("Já existe cadastro com email informado");
+            return _mapper.Map<PlayerDto>(player);
+        }
+
+        public async Task<PlayerDto> Update(PlayerDto objDto)
+        {
+            Player existEmail;
+            Player player = await _playerRepository.FindById(objDto.Id);
+
+            if (player.IsNull())
+                throw new DomainException("Jogador não encontrado");
             
-            player = _mapper.Map<Player>(objDTO);
+            if (!player.Email.Equals(objDto.Email))
+            {
+                existEmail = await _playerRepository.FindByEmail(objDto.Email);
+
+                if (!existEmail.IsNull())
+                    throw new DomainException("Já existe cadastro com email informado");
+            }
+            
+            player = _mapper.Map(objDto, player);
             player.Updated_At = DateTime.Now;
             player.Validate();
+
+            Player playerUpdated = await _playerRepository.Update(player);
 
             return _mapper.Map<PlayerDto>(player);
         }

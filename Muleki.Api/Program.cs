@@ -8,7 +8,7 @@ using Muleki.Domain.Entities;
 using Muleki.Infra.Context;
 using Muleki.Infra.Interfaces;
 using Muleki.Infra.Repositories;
-using Muleki.Service.DTO;
+using Muleki.Service.Dto;
 using Muleki.Service.Interfaces;
 using Muleki.Service.Services;
 
@@ -46,6 +46,7 @@ builder.Services.AddAuthentication(auth =>
 MapperConfiguration cfgMapper = new MapperConfiguration(cfg =>
 {
     cfg.CreateMap<PlayerCreateInput, PlayerDto>();
+    cfg.CreateMap<PlayerUpdateInput, PlayerDto>();
     cfg.CreateMap<AuthInput, AuthDto>();
     cfg.CreateMap<PlayerDto, Player>().ReverseMap();
     cfg.CreateMap<Football, FootballDto>();
