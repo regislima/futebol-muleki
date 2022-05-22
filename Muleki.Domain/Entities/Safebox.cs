@@ -6,8 +6,8 @@ namespace Muleki.Domain.Entities
 {
     public class Safebox : BaseEntity
     {
-        public decimal Income { get; set; }
-        public decimal Expense { get; set; }
+        public ExpenseType Type { get; set; }
+        public decimal Value { get; set; }
         
         #region OneToOne
         public long FootballId { get; set; }

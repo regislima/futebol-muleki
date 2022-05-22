@@ -16,12 +16,13 @@ namespace Muleki.Infra.Mappings
                 .HasColumnName("id")
                 .HasColumnType("BIGINT");
 
-            builder.Property(safebox => safebox.Income)
+            builder.Property(safebox => safebox.Type)
                 .IsRequired()
-                .HasColumnName("income")
-                .HasColumnType("DECIMAL(5,2)");
+                .HasMaxLength(1)
+                .HasColumnName("type")
+                .HasColumnType("TINYINT");
             
-            builder.Property(safebox => safebox.Expense)
+            builder.Property(safebox => safebox.Value)
                 .IsRequired()
                 .HasColumnName("expense")
                 .HasColumnType("DECIMAL(5,2)");

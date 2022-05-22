@@ -48,6 +48,7 @@ namespace Muleki.Infra.Mappings
             
             builder.Property(player => player.Role)
                 .IsRequired()
+                .HasMaxLength(1)
                 .HasColumnName("role")
                 .HasColumnType("TINYINT");
             

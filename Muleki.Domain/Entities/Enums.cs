@@ -11,6 +11,15 @@ namespace Muleki.Domain.Entities
         ADMINISTRATOR
     }
 
+    public enum ExpenseType
+    {
+        [Description("Despesa")]
+        EXPEMNSE,
+
+        [Description("Receita")]
+        RECEITA
+    }
+
     public enum ScoreAttribute
     {
         [Description("Gol")]
