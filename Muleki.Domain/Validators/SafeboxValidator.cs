@@ -9,23 +9,23 @@ namespace Muleki.Domain.Validators
         {
             RuleFor(safebox => safebox)
                 .NotNull()
-                .WithMessage("Cofre não pode ser nulo");
+                .WithMessage("Cofre não pode ser nulo.");
             
             RuleFor(safebox => safebox.Type)
                 .NotEmpty()
                 .IsInEnum()
-                .WithMessage("Receita não pode ser nulo ou vazio");
+                .WithMessage("Tipo não pode ser nulo.");
             
             RuleFor(safebox => safebox.Value)
                 .NotEmpty()
-                .WithMessage("Valor não pode ser nulo ou vazio")
+                .WithMessage("Valor não pode ser nulo ou vazio.")
 
                 .LessThan(0)
-                .WithMessage("Despesa não pode ser negativo");
+                .WithMessage("Valor não pode ser negativo");
             
-            RuleFor(safebox => safebox.Football)
+            RuleFor(safebox => safebox.FootballId)
                 .NotNull()
-                .WithMessage("Futebol ('racha') deve ser informado");
+                .WithMessage("Futebol ('racha') deve ser informado.");
         }
     }
 }

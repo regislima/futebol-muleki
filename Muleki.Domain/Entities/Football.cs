@@ -6,11 +6,7 @@ namespace Muleki.Domain.Entities
 {
     public class Football : BaseEntity
     {
-        public DateTime Date { get; set; }
         public List<PlayerFootball> PlayerFootball { get; set; }
-
-        // Entity Framework Core
-        public Football() { }
 
         public override bool Validate()
         {

@@ -59,7 +59,8 @@ namespace Muleki.Infra.Mappings
             
             builder.HasOne(score => score.PlayerFootball)
                 .WithMany(playerFootball => playerFootball.Scores)
-                .HasForeignKey(score => score.PlayerFootballId);
+                .HasForeignKey(score => score.PlayerFootballId)
+                .IsRequired();
         }
     }
 }

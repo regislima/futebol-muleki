@@ -1,15 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using Muleki.Common.Extensions;
 using Muleki.Domain.Entities;
 using Muleki.Infra.Context;
 using Muleki.Infra.Interfaces;
 
 namespace Muleki.Infra.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
-        private readonly MulekiContext _context;
-        private readonly IUnitOfWork _unitOfWork;
+        protected readonly MulekiContext _context;
+        protected readonly IUnitOfWork _unitOfWork;
 
         public BaseRepository(MulekiContext context, IUnitOfWork unitOfWork)
         {
@@ -37,7 +36,7 @@ namespace Muleki.Infra.Repositories
             return await _context.Set<T>()
                 .AsNoTracking()
                 .Where(x => x.Id == id)
-                .FirstOrDefaultAsync();
+                .FirstAsync();
         }
 
         public virtual async Task Remove(T entity)

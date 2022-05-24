@@ -11,11 +11,11 @@ namespace Muleki.Domain.Validators
                 .NotNull()
                 .WithMessage("Jogador-Futebol não pode ser nulo");
             
-            RuleFor(playerFootball => playerFootball.Player)
+            RuleFor(playerFootball => playerFootball.PlayerId)
                 .NotNull()
                 .WithMessage("Jogador não pode ser nulo");
             
-            RuleFor(playerFootball => playerFootball.Football)
+            RuleFor(playerFootball => playerFootball.FootballId)
                 .NotNull()
                 .WithMessage("Futebol não pode ser nulo");
         }

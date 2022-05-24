@@ -11,9 +11,6 @@ namespace Muleki.Domain.Entities
         public long FootballId { get; set; }
         public Football Football { get; set; }
         public List<Score> Scores { get; set; }
-
-        // Entity Framework Core
-        public PlayerFootball() { }
         
         public override bool Validate()
         {

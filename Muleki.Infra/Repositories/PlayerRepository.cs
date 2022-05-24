@@ -7,14 +7,7 @@ namespace Muleki.Infra.Repositories
 {
     public class PlayerRepository : BaseRepository<Player>, IPlayerRepository
     {
-        private readonly MulekiContext _context;
-        private readonly IUnitOfWork _unitOfWork;
-
-        public PlayerRepository(MulekiContext context, IUnitOfWork unitOfWork) : base(context, unitOfWork)
-        {
-            _context = context;
-            _unitOfWork = unitOfWork;
-        }
+        public PlayerRepository(MulekiContext context, IUnitOfWork unitOfWork) : base(context, unitOfWork) { }
 
         public async Task<Player> FindByEmail(string email)
         {

@@ -16,11 +16,6 @@ namespace Muleki.Infra.Mappings
                 .HasColumnName("id")
                 .HasColumnType("BIGINT");
             
-            builder.Property(football => football.Date)
-                .IsRequired()
-                .HasColumnName("date")
-                .HasColumnType("DATETIME");
-            
             builder.Property(football => football.Created_At)
                 .IsRequired()
                 .HasColumnName("created_at")

@@ -6,16 +6,13 @@ namespace Muleki.Domain.Entities
 {
     public class Safebox : BaseEntity
     {
-        public ExpenseType Type { get; set; }
+        public SafeboxType Type { get; set; }
         public decimal Value { get; set; }
         
         #region OneToOne
         public long FootballId { get; set; }
         public Football Football { get; set; }
         #endregion
-
-        // Entity Framework Core
-        public Safebox() { }
 
         public override bool Validate()
         {

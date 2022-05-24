@@ -7,16 +7,12 @@ using Muleki.Service.Dto;
 
 namespace Muleki.Service.Services
 {
-    public class AuthService
+    public class AuthService : BaseService<IPlayerRepository>
     {
-        private readonly IMapper _mapper;
-        private readonly IPlayerRepository _playerRepository;
         private readonly IConfiguration _configuration;
 
-        public AuthService(IMapper mapper, IPlayerRepository playerRepository, IConfiguration configuration)
+        public AuthService(IMapper mapper, IPlayerRepository serviceRepository, IConfiguration configuration) : base(mapper, serviceRepository)
         {
-            _mapper = mapper;
-            _playerRepository = playerRepository;
             _configuration = configuration;
         }
 
@@ -29,7 +25,7 @@ namespace Muleki.Service.Services
 
         public bool VerifyPasswordHash(AuthDto authDto)
         {
-            Player player = _playerRepository.FindByEmail(authDto.Email).Result;
+            Player player = _entityRepository.FindByEmail(authDto.Email).Result;
             byte[] passwordHash = Convert.FromBase64String(player.PasswordHash);
             byte[] passwordSalt = Convert.FromBase64String(player.PasswordSalt);
             

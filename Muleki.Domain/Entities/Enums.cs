@@ -11,13 +11,13 @@ namespace Muleki.Domain.Entities
         ADMINISTRATOR
     }
 
-    public enum ExpenseType
+    public enum SafeboxType
     {
         [Description("Despesa")]
         EXPEMNSE,
 
         [Description("Receita")]
-        RECEITA
+        INCOME
     }
 
     public enum ScoreAttribute

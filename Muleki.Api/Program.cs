@@ -51,6 +51,7 @@ MapperConfiguration cfgMapper = new MapperConfiguration(cfg =>
     cfg.CreateMap<PlayerDto, Player>().ReverseMap();
     cfg.CreateMap<Football, FootballDto>();
     cfg.CreateMap<Score, ScoreDto>();
+    cfg.CreateMap<Safebox, SafeboxDto>();
 });
 #endregion
 

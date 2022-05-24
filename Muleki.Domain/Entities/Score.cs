@@ -17,9 +17,6 @@ namespace Muleki.Domain.Entities
         public PlayerFootball PlayerFootball { get; set; }
         #endregion
 
-        // Entity Framework Core
-        public Score() { }
-
         public override bool Validate()
         {
             ScoreValidator validator = new ScoreValidator();

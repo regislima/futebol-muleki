@@ -9,20 +9,13 @@ using Muleki.Service.Interfaces;
 
 namespace Muleki.Service.Services
 {
-    public class PlayerService : IPlayerService
+    public class PlayerService : BaseService<IPlayerRepository>, IPlayerService
     {
-        private readonly IMapper _mapper;
-        private readonly IPlayerRepository _playerRepository;
-
-        public PlayerService(IMapper mapper, IPlayerRepository playerRepository)
-        {
-            _mapper = mapper;
-            _playerRepository = playerRepository;
-        }
+        public PlayerService(IMapper mapper, IPlayerRepository serviceRepository) : base(mapper, serviceRepository) { }
 
         public async Task<PlayerDto> Create(PlayerDto objDto)
         {
-            Player player = await _playerRepository.FindByEmail(objDto.Email);
+            Player player = await _entityRepository.FindByEmail(objDto.Email);
 
             if (!player.IsNull())
                 throw new DomainException("Já existe cadastro com email informado");
@@ -35,68 +28,68 @@ namespace Muleki.Service.Services
             player.Created_At = DateTime.Now;
             player.Validate();
             
-            Player playerCreated = await _playerRepository.Create(player);
+            Player playerCreated = await _entityRepository.Create(player);
 
             return _mapper.Map<PlayerDto>(playerCreated);
         }
 
         public async Task<List<PlayerDto>> FindAll()
         {
-            List<Player> players = await _playerRepository.FindAll();
+            List<Player> players = await _entityRepository.FindAll();
             
             return _mapper.Map<List<PlayerDto>>(players);
         }
 
         public async Task<PlayerDto> FindByEmail(string email)
         {
-            Player player = await _playerRepository.FindByEmail(email);
+            Player player = await _entityRepository.FindByEmail(email);
 
             return _mapper.Map<PlayerDto>(player);
         }
 
         public async Task<PlayerDto> FindById(long id)
         {
-            Player player = await _playerRepository.FindById(id);
+            Player player = await _entityRepository.FindById(id);
 
             return _mapper.Map<PlayerDto>(player);
         }
 
         public async Task<List<PlayerDto>> FindByName(string name)
         {
-            List<Player> players = await _playerRepository.FindByName(name);
+            List<Player> players = await _entityRepository.FindByName(name);
             
             return _mapper.Map<List<PlayerDto>>(players);
         }
 
         public async Task<List<PlayerDto>> FindByNick(string nick)
         {
-            List<Player> players = await _playerRepository.FindByNick(nick);
+            List<Player> players = await _entityRepository.FindByNick(nick);
             
             return _mapper.Map<List<PlayerDto>>(players);
         }
 
         public async Task<List<FootballDto>> FindFootballs(long playerId)
         {   
-            List<Football> footballs = await _playerRepository.FindFootballs(playerId);
+            List<Football> footballs = await _entityRepository.FindFootballs(playerId);
             
             return _mapper.Map<List<FootballDto>>(footballs);
         }
 
         public async Task<List<ScoreDto>> FindScores(long playerId)
         {
-            List<Score> scores = await _playerRepository.FindScores(playerId);
+            List<Score> scores = await _entityRepository.FindScores(playerId);
             
             return _mapper.Map<List<ScoreDto>>(scores);
         }
 
         public async Task<PlayerDto> Remove(long id)
         {
-            Player player = await _playerRepository.FindById(id);
+            Player player = await _entityRepository.FindById(id);
 
             if (player.IsNull())
                 throw new DomainException("Jogador não encontrado");
             
-            await _playerRepository.Remove(player);
+            await _entityRepository.Remove(player);
 
             return _mapper.Map<PlayerDto>(player);
         }
@@ -104,14 +97,14 @@ namespace Muleki.Service.Services
         public async Task<PlayerDto> Update(PlayerDto objDto)
         {
             Player existEmail;
-            Player player = await _playerRepository.FindById(objDto.Id);
+            Player player = await _entityRepository.FindById(objDto.Id);
 
             if (player.IsNull())
                 throw new DomainException("Jogador não encontrado");
             
             if (!player.Email.Equals(objDto.Email))
             {
-                existEmail = await _playerRepository.FindByEmail(objDto.Email);
+                existEmail = await _entityRepository.FindByEmail(objDto.Email);
 
                 if (!existEmail.IsNull())
                     throw new DomainException("Já existe cadastro com email informado");
@@ -121,7 +114,7 @@ namespace Muleki.Service.Services
             player.Updated_At = DateTime.Now;
             player.Validate();
 
-            Player playerUpdated = await _playerRepository.Update(player);
+            Player playerUpdated = await _entityRepository.Update(player);
 
             return _mapper.Map<PlayerDto>(player);
         }

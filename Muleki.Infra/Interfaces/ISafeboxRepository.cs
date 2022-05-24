@@ -4,6 +4,6 @@ namespace Muleki.Infra.Interfaces
 {
     public interface ISafeboxRepository : IBaseRepository<Safebox>
     {
-        Task<Safebox> FindByFootball(long footballId);
+        Task<Safebox> FindByFootballId(long footballId);
     }
 }
