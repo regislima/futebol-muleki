@@ -34,9 +34,9 @@ namespace Muleki.Api.Controllers
                     return BadRequest(DataResponse.Error(playerCreateInput, ModelState.GetErrorMessage()));
                 
                 PlayerDto playerDto = _mapper.Map<PlayerDto>(playerCreateInput);
-                PlayerDto playerCreated = await _playerService.Create(playerDto);
+                playerDto = await _playerService.Create(playerDto);
                 
-                return Ok(DataResponse.Success(playerCreated));
+                return Ok(DataResponse.Success(playerDto));
             }
             catch (DomainException ex)
             {

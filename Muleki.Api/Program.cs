@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Muleki.Api.InputModels.Auth;
 using Muleki.Api.InputModels.Player;
+using Muleki.Api.InputModels.Safebox;
 using Muleki.Domain.Entities;
 using Muleki.Infra.Context;
 using Muleki.Infra.Interfaces;
@@ -45,12 +46,23 @@ builder.Services.AddAuthentication(auth =>
 #region AutoMapper
 MapperConfiguration cfgMapper = new MapperConfiguration(cfg =>
 {
+    // Player
     cfg.CreateMap<PlayerCreateInput, PlayerDto>();
     cfg.CreateMap<PlayerUpdateInput, PlayerDto>();
-    cfg.CreateMap<AuthInput, AuthDto>();
     cfg.CreateMap<PlayerDto, Player>().ReverseMap();
+    
+    // Authorization
+    cfg.CreateMap<AuthInput, AuthDto>();
+    
+    // Footaball
     cfg.CreateMap<Football, FootballDto>();
+
+    // Score
     cfg.CreateMap<Score, ScoreDto>();
+
+    // Safebox
+    cfg.CreateMap<SafeboxCreateInput, SafeboxDto>();
+    cfg.CreateMap<SafeboxUpdateInput, PlayerDto>();
     cfg.CreateMap<Safebox, SafeboxDto>();
 });
 #endregion
