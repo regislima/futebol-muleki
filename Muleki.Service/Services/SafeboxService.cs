@@ -15,6 +15,7 @@ namespace Muleki.Service.Services
         public async Task<SafeboxDto> Create(SafeboxDto objDto)
         {            
             Safebox safebox = _mapper.Map<Safebox>(objDto);
+            safebox.Created_At = DateTime.Now;
             safebox.Validate();
             safebox = await _entityRepository.Create(safebox);
             
@@ -62,6 +63,7 @@ namespace Muleki.Service.Services
                 throw new DomainException("Cofre não encontrado");
             
             _mapper.Map(safebox, objDto);
+            safebox.Updated_At = DateTime.Now;
             safebox.Validate();
             safebox = await _entityRepository.Update(safebox);
             

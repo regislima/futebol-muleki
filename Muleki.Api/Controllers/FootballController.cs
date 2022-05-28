@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Muleki.Api.InputModels.Safebox;
+using Muleki.Api.InputModels.Football;
 using Muleki.Common.Communication;
 using Muleki.Common.Extensions;
 using Muleki.Exceptions;
@@ -12,31 +12,27 @@ namespace Muleki.Api.Controllers
 {
     [ApiController]
     [Route("api")]
-    public class SafeboxController : ControllerBase
+    public class FootballController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly ISafeboxService _safeboxService;
+        private readonly IFootballService _footballService;
 
-        public SafeboxController(IMapper mapper, ISafeboxService safeboxService)
+        public FootballController(IMapper mapper, IFootballService footballService)
         {
             _mapper = mapper;
-            _safeboxService = safeboxService;
+            _footballService = footballService;
         }
 
         [HttpPost]
-        [Route("v1/safebox/create")]
+        [Route("v1/football/create")]
         [Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> Create([FromBody] SafeboxCreateInput safeboxCreateInput)
+        public async Task<IActionResult> Create()
         {
             try
             {
-                if (!ModelState.IsValid)
-                    return BadRequest(DataResponse.Error(safeboxCreateInput, ModelState.GetErrorMessage()));
+                FootballDto footballDto = await _footballService.Create(new FootballDto());
                 
-                SafeboxDto safeboxDto = _mapper.Map<SafeboxDto>(safeboxCreateInput);
-                safeboxDto = await _safeboxService.Create(safeboxDto);
-                
-                return Ok(DataResponse.Success(safeboxDto));
+                return Ok(DataResponse.Success(footballDto));
             }
             catch (DomainException ex)
             {
@@ -49,19 +45,19 @@ namespace Muleki.Api.Controllers
         }
 
         [HttpPut]
-        [Route("v1/safebox/update")]
+        [Route("v1/football/update")]
         [Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> Update([FromBody] SafeboxUpdateInput safeboxUpdateInput)
+        public async Task<IActionResult> Update([FromBody] FootballUpdateInput footballUpdateInput)
         {
             try
             {
                 if (!ModelState.IsValid)
-                    return BadRequest(DataResponse.Error(safeboxUpdateInput, ModelState.GetErrorMessage()));
+                    return BadRequest(DataResponse.Error(footballUpdateInput, ModelState.GetErrorMessage()));
                 
-                SafeboxDto safeboxDto = _mapper.Map<SafeboxDto>(safeboxUpdateInput);
-                safeboxDto = await _safeboxService.Update(safeboxDto);
+                FootballDto footballDto = _mapper.Map<FootballDto>(footballUpdateInput);
+                footballDto = await _footballService.Update(footballDto);
                 
-                return Ok(DataResponse.Success(safeboxDto));
+                return Ok(DataResponse.Success(footballDto));
             }
             catch (DomainException ex)
             {
@@ -74,15 +70,15 @@ namespace Muleki.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("v1/safebox/remove/{id}")]
+        [Route("v1/football/remove/{id}")]
         [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Remove(long id)
         {
             try
             {
-                SafeboxDto safeboxDto = await _safeboxService.Remove(id);
+                FootballDto footballDto = await _footballService.Remove(id);
                 
-                return Ok(DataResponse.Success(safeboxDto));
+                return Ok(DataResponse.Success(footballDto));
             }
             catch (DomainException ex)
             {
@@ -95,17 +91,17 @@ namespace Muleki.Api.Controllers
         }
 
         [HttpGet]
-        [Route("v1/safebox/find/id")]
+        [Route("v1/football/find/id")]
         [Authorize(Roles = "Administrador, Jogador")]
         public async Task<IActionResult> Find([FromQuery] long id)
         {
             try
             {
-                SafeboxDto safeboxDto = await _safeboxService.FindById(id);
+                FootballDto footballDto = await _footballService.FindById(id);
 
-                return (safeboxDto.IsNull() ? 
+                return (footballDto.IsNull() ? 
                     Ok(DataResponse.Success(null, "Nenhum registro encontrado")) : 
-                    Ok(DataResponse.Success(safeboxDto)));
+                    Ok(DataResponse.Success(footballDto)));
             }
             catch (DomainException ex)
             {
@@ -118,17 +114,17 @@ namespace Muleki.Api.Controllers
         }
 
         [HttpGet]
-        [Route("v1/safebox/find/all")]
+        [Route("v1/football/find/all")]
         [Authorize(Roles = "Administrador, Jogador")]
         public async Task<IActionResult> FindAll()
         {
             try
             {
-                List<SafeboxDto> safeboxDtos = await _safeboxService.FindAll();
+                List<FootballDto> footballDtos = await _footballService.FindAll();
 
-                return ((safeboxDtos.IsNull() || safeboxDtos.Count == 0) ? 
+                return ((footballDtos.IsNull() || footballDtos.Count == 0) ? 
                     Ok(DataResponse.Success(null, "Nenhum registro encontrado")) : 
-                    Ok(DataResponse.Success(safeboxDtos)));
+                    Ok(DataResponse.Success(footballDtos)));
             }
             catch (DomainException ex)
             {
@@ -141,17 +137,17 @@ namespace Muleki.Api.Controllers
         }
 
         [HttpGet]
-        [Route("v1/safebox/find/football")]
+        [Route("v1/football/find/date")]
         [Authorize(Roles = "Administrador, Jogador")]
-        public async Task<IActionResult> FindByFootballId([FromQuery] long footballId)
+        public async Task<IActionResult> FindByDate([FromQuery] DateTime date)
         {
             try
             {
-                SafeboxDto safeboxDto = await _safeboxService.FindByFootballId(footballId);
+                FootballDto footballDto = await _footballService.FindByDate(date);
 
-                return (safeboxDto.IsNull() ? 
+                return (footballDto.IsNull() ? 
                     Ok(DataResponse.Success(null, "Nenhum registro encontrado")) : 
-                    Ok(DataResponse.Success(safeboxDto)));
+                    Ok(DataResponse.Success(footballDto)));
             }
             catch (DomainException ex)
             {

@@ -3,6 +3,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Muleki.Api.InputModels.Auth;
+using Muleki.Api.InputModels.Football;
 using Muleki.Api.InputModels.Player;
 using Muleki.Api.InputModels.Safebox;
 using Muleki.Domain.Entities;
@@ -52,18 +53,19 @@ MapperConfiguration cfgMapper = new MapperConfiguration(cfg =>
     cfg.CreateMap<PlayerDto, Player>().ReverseMap();
     
     // Authorization
-    cfg.CreateMap<AuthInput, AuthDto>();
+    cfg.CreateMap<AuthInput, AuthDto>().ReverseMap();
     
     // Footaball
-    cfg.CreateMap<Football, FootballDto>();
+    cfg.CreateMap<FootballUpdateInput, FootballDto>();
+    cfg.CreateMap<Football, FootballDto>().ReverseMap();
 
     // Score
-    cfg.CreateMap<Score, ScoreDto>();
+    cfg.CreateMap<Score, ScoreDto>().ReverseMap();
 
     // Safebox
     cfg.CreateMap<SafeboxCreateInput, SafeboxDto>();
     cfg.CreateMap<SafeboxUpdateInput, PlayerDto>();
-    cfg.CreateMap<Safebox, SafeboxDto>();
+    cfg.CreateMap<Safebox, SafeboxDto>().ReverseMap();
 });
 #endregion
 
