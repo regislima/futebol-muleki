@@ -15,7 +15,6 @@ namespace Muleki.Service.Services
         public async Task<SafeboxDto> Create(SafeboxDto objDto)
         {            
             Safebox safebox = _mapper.Map<Safebox>(objDto);
-            safebox.Created_At = DateTime.Now;
             safebox.Validate();
             safebox = await _entityRepository.Create(safebox);
             

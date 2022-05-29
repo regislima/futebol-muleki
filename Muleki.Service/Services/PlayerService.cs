@@ -25,7 +25,6 @@ namespace Muleki.Service.Services
             player = _mapper.Map<Player>(objDto);
             player.PasswordHash = Convert.ToBase64String(PasswordHash);
             player.PasswordSalt = Convert.ToBase64String(PasswordSalt);
-            player.Created_At = DateTime.Now;
             player.Validate();
             
             Player playerCreated = await _entityRepository.Create(player);

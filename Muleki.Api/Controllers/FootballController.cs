@@ -93,7 +93,7 @@ namespace Muleki.Api.Controllers
         [HttpGet]
         [Route("v1/football/find/id")]
         [Authorize(Roles = "Administrador, Jogador")]
-        public async Task<IActionResult> Find([FromQuery] long id)
+        public async Task<IActionResult> FindById([FromQuery] long id)
         {
             try
             {

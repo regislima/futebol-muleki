@@ -14,9 +14,6 @@ namespace Muleki.Infra.Context
         public DbSet<PlayerFootball> PlayersFootballs { get; set; }
         private readonly IConfiguration _configuration;
 
-        // Entity Framework Core
-        public MulekiContext() { }
-
         public MulekiContext(DbContextOptions<MulekiContext> options, IConfiguration configuration) : base(options)
         {
             _configuration = configuration;

@@ -20,7 +20,7 @@ namespace Muleki.Domain.Validators
                 .NotEmpty()
                 .WithMessage("Valor não pode ser nulo ou vazio.")
 
-                .LessThan(0)
+                .GreaterThan(0)
                 .WithMessage("Valor não pode ser negativo");
             
             RuleFor(safebox => safebox.FootballId)

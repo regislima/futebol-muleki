@@ -14,7 +14,7 @@ namespace Muleki.Domain.Entities
     public enum SafeboxType
     {
         [Description("Despesa")]
-        EXPEMNSE,
+        EXPENSE,
 
         [Description("Receita")]
         INCOME

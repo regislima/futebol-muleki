@@ -15,9 +15,7 @@ namespace Muleki.Service.Services
         public async Task<FootballDto> Create(FootballDto objDto)
         {           
             Football football = _mapper.Map<Football>(objDto);
-            football.Created_At = DateTime.Now;
             football.Validate();
-            
             football = await _entityRepository.Create(football);
 
             return _mapper.Map<FootballDto>(football);

@@ -76,6 +76,10 @@ builder.Services.AddDbContext<MulekiContext>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<IPlayerService, PlayerService>();
 builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
+builder.Services.AddScoped<IFootballService, FootballService>();
+builder.Services.AddScoped<IFootballRepository, FootballRepository>();
+builder.Services.AddScoped<ISafeboxService, SafeboxService>();
+builder.Services.AddScoped<ISafeboxRepository, SafeboxRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 #endregion
 
