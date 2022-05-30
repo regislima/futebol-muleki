@@ -22,7 +22,7 @@ namespace Muleki.Security.Criptography
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Name, player.Name),
-                    new Claim(ClaimTypes.Role, player.Role.GetEnumDescription())
+                    new Claim(ClaimTypes.Role, player.Role.GetDescription())
                 }),
 
                 Issuer = configuration["Jwt:Issuer"],

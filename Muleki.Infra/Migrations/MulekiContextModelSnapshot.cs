@@ -107,7 +107,7 @@ namespace Muleki.Infra.Migrations
                         new
                         {
                             Id = 1L,
-                            Created_At = new DateTime(2022, 5, 29, 17, 47, 17, 8, DateTimeKind.Local).AddTicks(7991),
+                            Created_At = new DateTime(2022, 5, 29, 23, 48, 4, 373, DateTimeKind.Local).AddTicks(4784),
                             Email = "root@email.com",
                             Name = "Root",
                             Nick = "Root",

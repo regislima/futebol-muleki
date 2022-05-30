@@ -64,7 +64,7 @@ MapperConfiguration cfgMapper = new MapperConfiguration(cfg =>
 
     // Safebox
     cfg.CreateMap<SafeboxCreateInput, SafeboxDto>();
-    cfg.CreateMap<SafeboxUpdateInput, PlayerDto>();
+    cfg.CreateMap<SafeboxUpdateInput, SafeboxDto>();
     cfg.CreateMap<Safebox, SafeboxDto>().ReverseMap();
 });
 #endregion

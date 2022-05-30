@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Muleki.Domain.Entities;
 
 namespace Muleki.Api.InputModels.Player
 {
@@ -24,7 +25,7 @@ namespace Muleki.Api.InputModels.Player
         public string Password { get; set; }
 
         [Required(ErrorMessage = "O Nível é obrigatório")]
-        [Range(0, 1, ErrorMessage = "O Nível deve estar entre {1} e {2}")]
+        [Range((int)Level.ADMINISTRATOR, (int)Level.PLAYER, ErrorMessage = "O Nível deve estar entre {1} e {2}")]
         public int Role { get; set; }
     }
 }

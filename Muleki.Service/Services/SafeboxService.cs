@@ -61,7 +61,7 @@ namespace Muleki.Service.Services
             if (safebox.IsNull())
                 throw new DomainException("Cofre não encontrado");
             
-            _mapper.Map(safebox, objDto);
+            _mapper.Map(objDto, safebox);
             safebox.Updated_At = DateTime.Now;
             safebox.Validate();
             safebox = await _entityRepository.Update(safebox);

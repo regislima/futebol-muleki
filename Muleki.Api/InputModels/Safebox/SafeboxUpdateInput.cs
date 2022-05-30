@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Muleki.Domain.Entities;
 
 namespace Muleki.Api.InputModels.Safebox
 {
@@ -15,7 +16,7 @@ namespace Muleki.Api.InputModels.Safebox
         public long FootballId { get; set; }
 
         [Required(ErrorMessage = "O Tipo é obrigatório")]
-        [Range(0, 1, ErrorMessage = "O Tipo deve estar entre {1} e {2}")]
+        [Range((int)SafeboxType.INCOME, (int)SafeboxType.EXPENSE, ErrorMessage = "O Tipo deve estar entre {1} e {2}")]
         public int Type { get; set; }
     }
 }

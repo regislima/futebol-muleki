@@ -75,7 +75,7 @@ namespace Muleki.Infra.Mappings
                     1, "Root", "Root", "root@email.com",
                     "39kX8Xb50tg4bMTpGTNQnBB548+J95bjlFi0bA2Qm6dakj3cim7xLtTDxINUd6PHdRYckEoranIweWyvg3n30w==",
                     "GU2xX9kpeVjBEBTi9hAaAK2tNmVXS4gbnXjrcgqHamwIMdOBsqAvquYYHVr55pp6bZ56vZ28gH31d2GZCZz8SdVT7oreUBRewI4nEv2rAhkY07JEF+oHU+DTO+WbYFDqh2Qzj+JPYUuPrMsOBl+LHp4RsKGyAduIOLWh4yKbaoU=",
-                    Role.ADMINISTRATOR
+                    Level.ADMINISTRATOR
                 )
             );
         }

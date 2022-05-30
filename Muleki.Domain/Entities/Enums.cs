@@ -2,48 +2,48 @@ using System.ComponentModel;
 
 namespace Muleki.Domain.Entities
 {
-    public enum Role
+    public enum Level
     {
-        [Description("Jogador")]
-        PLAYER,
-
         [Description("Administrador")]
-        ADMINISTRATOR
+        ADMINISTRATOR = 1,
+
+        [Description("Jogador")]
+        PLAYER = 2
     }
 
     public enum SafeboxType
     {
-        [Description("Despesa")]
-        EXPENSE,
-
         [Description("Receita")]
-        INCOME
+        INCOME = 1,
+
+        [Description("Despesa")]
+        EXPENSE = 2
     }
 
     public enum ScoreAttribute
     {
         [Description("Gol")]
-        GOAL,
+        GOAL = 1,
 
         [Description("Assistência")]
-        ASSISTENCE,
+        ASSISTENCE = 2,
 
         [Description("Chute na Trave")]
-        KICK_ON_THE_BEAM,
+        KICK_ON_THE_BEAM = 3,
 
         [Description("Gol Perdido")]
-        GOAL_LOST,
+        GOAL_LOST = 4,
 
         [Description("Desarme")]
-        DISARM,
+        DISARM = 5,
 
         [Description("Cartão Amarelo")]
-        YELLOW_CARD,
+        YELLOW_CARD = 6,
 
         [Description("Cartão Vermelho")]
-        RED_CARD,
+        RED_CARD = 7,
 
         [Description("Defesa Difícil")]
-        HARD_DEFENSE
+        HARD_DEFENSE = 8
     }
 }

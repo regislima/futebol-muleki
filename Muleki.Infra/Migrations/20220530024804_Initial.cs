@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Muleki.Infra.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,7 +19,6 @@ namespace Muleki.Infra.Migrations
                 {
                     id = table.Column<long>(type: "BIGINT", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    date = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     created_at = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     updated_at = table.Column<DateTime>(type: "DATETIME", nullable: true),
                     deleted_at = table.Column<DateTime>(type: "DATETIME", nullable: true)
@@ -42,11 +41,11 @@ namespace Muleki.Infra.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     email = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    password_hash = table.Column<string>(type: "VARCHAR(200)", maxLength: 200, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     password_salt = table.Column<string>(type: "VARCHAR(240)", maxLength: 240, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PasswordSalt = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    role = table.Column<sbyte>(type: "TINYINT", nullable: false),
+                    role = table.Column<sbyte>(type: "TINYINT", maxLength: 1, nullable: false),
                     created_at = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     updated_at = table.Column<DateTime>(type: "DATETIME", nullable: true),
                     deleted_at = table.Column<DateTime>(type: "DATETIME", nullable: true)
@@ -63,8 +62,8 @@ namespace Muleki.Infra.Migrations
                 {
                     id = table.Column<long>(type: "BIGINT", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    income = table.Column<decimal>(type: "DECIMAL(65,30)", nullable: false),
-                    expense = table.Column<decimal>(type: "DECIMAL(65,30)", nullable: false),
+                    type = table.Column<sbyte>(type: "TINYINT", maxLength: 1, nullable: false),
+                    expense = table.Column<decimal>(type: "DECIMAL(5,2)", nullable: false),
                     FootballId = table.Column<long>(type: "BIGINT", nullable: false),
                     created_at = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     updated_at = table.Column<DateTime>(type: "DATETIME", nullable: true),
@@ -142,8 +141,8 @@ namespace Muleki.Infra.Migrations
 
             migrationBuilder.InsertData(
                 table: "players",
-                columns: new[] { "id", "created_at", "deleted_at", "email", "name", "nick", "password_salt", "PasswordSalt", "role", "updated_at" },
-                values: new object[] { 1L, new DateTime(2022, 5, 9, 22, 1, 31, 544, DateTimeKind.Local).AddTicks(3350), null, "root@email.com", "Root", "Root", "mV/+IST6+80UcjdFuaUN4CZ7mcHiClpYndmlayqk8nNYH025/PE+P/+0ulgG49fQB0ZxkH/98arOA1of40Oo7g==", "gGOO/obFwf50zaJ9LhZ0fMnV8ztfLicMBcaIhEswjK+0IdNQaN0ezEmVCk/T1PTnK/6Ahz8iKmtAGjmTq/ewKPopMKLBMC0G5rAXJNeZs1db7OXoip0zL82vmKucJhNDgiKXBpy/SGxKWI81vrcCKzY+9VZIOQLnuBTrezsZPkg=", (sbyte)1, null });
+                columns: new[] { "id", "created_at", "deleted_at", "email", "name", "nick", "password_hash", "password_salt", "role", "updated_at" },
+                values: new object[] { 1L, new DateTime(2022, 5, 29, 23, 48, 4, 373, DateTimeKind.Local).AddTicks(4784), null, "root@email.com", "Root", "Root", "39kX8Xb50tg4bMTpGTNQnBB548+J95bjlFi0bA2Qm6dakj3cim7xLtTDxINUd6PHdRYckEoranIweWyvg3n30w==", "GU2xX9kpeVjBEBTi9hAaAK2tNmVXS4gbnXjrcgqHamwIMdOBsqAvquYYHVr55pp6bZ56vZ28gH31d2GZCZz8SdVT7oreUBRewI4nEv2rAhkY07JEF+oHU+DTO+WbYFDqh2Qzj+JPYUuPrMsOBl+LHp4RsKGyAduIOLWh4yKbaoU=", (sbyte)1, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_player_football_FootballId",

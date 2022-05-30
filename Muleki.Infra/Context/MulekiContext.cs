@@ -14,6 +14,9 @@ namespace Muleki.Infra.Context
         public DbSet<PlayerFootball> PlayersFootballs { get; set; }
         private readonly IConfiguration _configuration;
 
+        // Empty constructor for add migrations
+        public MulekiContext() { }
+
         public MulekiContext(DbContextOptions<MulekiContext> options, IConfiguration configuration) : base(options)
         {
             _configuration = configuration;

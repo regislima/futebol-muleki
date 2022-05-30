@@ -11,7 +11,7 @@ namespace Muleki.Domain.Entities
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
-        public Role Role { get; set; }
+        public Level Role { get; set; }
 
         #region OneToMany
         public List<PlayerFootball> PlayerFootball { get; set; }
@@ -20,7 +20,7 @@ namespace Muleki.Domain.Entities
         // Entity Framework Core
         public Player() { }
 
-        public Player(long id, string name, string nick, string email, string passwordHash, string passwordSalt, Role role)
+        public Player(long id, string name, string nick, string email, string passwordHash, string passwordSalt, Level role)
         {
             Id = id;
             Name = name;
