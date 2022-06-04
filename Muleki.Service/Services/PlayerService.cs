@@ -23,6 +23,7 @@ namespace Muleki.Service.Services
             Crypt.CreatePasswordHash(objDto.Password, out byte[] PasswordHash, out byte[] PasswordSalt);
             
             player = _mapper.Map<Player>(objDto);
+            player.Created_At = DateTime.Now;
             player.PasswordHash = Convert.ToBase64String(PasswordHash);
             player.PasswordSalt = Convert.ToBase64String(PasswordSalt);
             player.Validate();

@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Muleki.Api.InputModels.Auth;
 using Muleki.Api.InputModels.Football;
 using Muleki.Api.InputModels.Player;
+using Muleki.Api.InputModels.PlayerFootball;
 using Muleki.Api.InputModels.Safebox;
 using Muleki.Domain.Entities;
 using Muleki.Infra.Context;
@@ -66,6 +67,10 @@ MapperConfiguration cfgMapper = new MapperConfiguration(cfg =>
     cfg.CreateMap<SafeboxCreateInput, SafeboxDto>();
     cfg.CreateMap<SafeboxUpdateInput, SafeboxDto>();
     cfg.CreateMap<Safebox, SafeboxDto>().ReverseMap();
+
+    // PlayerFootball
+    cfg.CreateMap<PlayerFootballUpdateInput, PlayerFootballDto>();
+    cfg.CreateMap<PlayerFootball, PlayerFootballDto>().ReverseMap();
 });
 #endregion
 

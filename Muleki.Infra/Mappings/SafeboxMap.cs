@@ -15,14 +15,13 @@ namespace Muleki.Infra.Mappings
                 .UseMySqlIdentityColumn()
                 .HasColumnName("id")
                 .HasColumnType("BIGINT");
-
-            builder.Property(safebox => safebox.Type)
-                .IsRequired()
-                .HasMaxLength(1)
-                .HasColumnName("type")
-                .HasColumnType("TINYINT");
             
-            builder.Property(safebox => safebox.Value)
+            builder.Property(safebox => safebox.IncomeValue)
+                .IsRequired()
+                .HasColumnName("income")
+                .HasColumnType("DECIMAL(5,2)");
+
+            builder.Property(safebox => safebox.ExpenseValue)
                 .IsRequired()
                 .HasColumnName("expense")
                 .HasColumnType("DECIMAL(5,2)");

@@ -5,8 +5,8 @@ namespace Muleki.Service.Dto
     public class SafeboxDto
     {
         public long Id { get; set; }
-        public SafeboxType Type { get; set; }
-        public decimal Value { get; set; }
+        public decimal IncomeValue { get; set; }
+        public decimal ExpenseValue { get; set; }
         public long FootballId { get; set; }
     }
 }

@@ -7,7 +7,8 @@ namespace Muleki.Infra.Repositories
 {
     public class PlayerRepository : BaseRepository<Player>, IPlayerRepository
     {
-        public PlayerRepository(MulekiContext context, IUnitOfWork unitOfWork) : base(context, unitOfWork) { }
+        public PlayerRepository(MulekiContext context, IUnitOfWork unitOfWork) : base(context, unitOfWork) 
+        { }
 
         public async Task<Player> FindByEmail(string email)
         {

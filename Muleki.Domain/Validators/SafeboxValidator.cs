@@ -11,17 +11,19 @@ namespace Muleki.Domain.Validators
                 .NotNull()
                 .WithMessage("Cofre não pode ser nulo.");
             
-            RuleFor(safebox => safebox.Type)
+            RuleFor(safebox => safebox.IncomeValue)
                 .NotEmpty()
-                .IsInEnum()
-                .WithMessage("Tipo não pode ser nulo.");
-            
-            RuleFor(safebox => safebox.Value)
-                .NotEmpty()
-                .WithMessage("Valor não pode ser nulo ou vazio.")
+                .WithMessage("Receita não pode ser nulo ou vazio.")
 
                 .GreaterThan(0)
-                .WithMessage("Valor não pode ser negativo");
+                .WithMessage("Receita não pode ser negativo");
+            
+            RuleFor(safebox => safebox.ExpenseValue)
+                .NotEmpty()
+                .WithMessage("Despesa não pode ser nulo ou vazio.")
+
+                .GreaterThan(0)
+                .WithMessage("Despesa não pode ser negativo");
             
             RuleFor(safebox => safebox.FootballId)
                 .NotNull()

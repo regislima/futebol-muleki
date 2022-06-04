@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace Muleki.Service.Dto
 {
     public class FootballDto

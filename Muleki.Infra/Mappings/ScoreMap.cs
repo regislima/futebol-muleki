@@ -58,7 +58,7 @@ namespace Muleki.Infra.Mappings
                 .HasColumnType("DATETIME");
             
             builder.HasOne(score => score.PlayerFootball)
-                .WithMany(playerFootball => playerFootball.Scores)
+                .WithMany()
                 .HasForeignKey(score => score.PlayerFootballId)
                 .IsRequired();
         }

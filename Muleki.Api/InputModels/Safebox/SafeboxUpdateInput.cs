@@ -9,14 +9,15 @@ namespace Muleki.Api.InputModels.Safebox
         [Range(1, long.MaxValue, ErrorMessage = "O Id deve ser maior ou igual a {1}")]
         public long Id { get; set; }
         
-        [Range(0, 200, ErrorMessage = "O Tipo deve ser maior que {1}")]
-        public decimal Value { get; set; }
+        [Required(ErrorMessage = "A Receita é obrigatório")]
+        [Range(0, 200, ErrorMessage = "A Receita deve estar entre {1} e {2}")]
+        public decimal IncomeValue { get; set; }
+
+        [Required(ErrorMessage = "A Despesa é obrigatório")]
+        [Range(0, 200, ErrorMessage = "A Despesa deve estar entre {1} e {2}")]
+        public decimal ExpenseValue { get; set; }
 
         [Required(ErrorMessage = "O Fotebol é obrigatório")]
         public long FootballId { get; set; }
-
-        [Required(ErrorMessage = "O Tipo é obrigatório")]
-        [Range((int)SafeboxType.INCOME, (int)SafeboxType.EXPENSE, ErrorMessage = "O Tipo deve estar entre {1} e {2}")]
-        public int Type { get; set; }
     }
 }
