@@ -26,36 +26,12 @@ namespace Muleki.Api.Controllers
         [HttpPost]
         [Route("v1/playerfootball/create")]
         [Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(PlayerFootballCreateInput playerFootballCreateInput)
         {
             try
             {
-                PlayerFootballDto playerFootballDto = await _playerFootballService.Create(new PlayerFootballDto());
-                
-                return Ok(DataResponse.Success(playerFootballDto));
-            }
-            catch (DomainException ex)
-            {
-                return BadRequest(DataResponse.Error(ex.Errors, ex.Message));
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, DataResponse.Error(null, ex.Message));
-            }
-        }
-
-        [HttpPut]
-        [Route("v1/playerfootball/update")]
-        [Authorize(Roles = "Administrador")]
-        public async Task<IActionResult> Update([FromBody] PlayerFootballUpdateInput playerFootballUpdateInput)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                    return BadRequest(DataResponse.Error(playerFootballUpdateInput, ModelState.GetErrorMessage()));
-                
-                PlayerFootballDto playerFootballDto = _mapper.Map<PlayerFootballDto>(playerFootballUpdateInput);
-                playerFootballDto = await _playerFootballService.Update(playerFootballDto);
+                PlayerFootballDto playerFootballDto = _mapper.Map<PlayerFootballDto>(playerFootballCreateInput);
+                playerFootballDto = await _playerFootballService.Create(playerFootballDto);
                 
                 return Ok(DataResponse.Success(playerFootballDto));
             }
@@ -125,6 +101,27 @@ namespace Muleki.Api.Controllers
                 return ((playerFootballDtos.IsNull() || playerFootballDtos.Count == 0) ? 
                     Ok(DataResponse.Success(null, "Nenhum registro encontrado")) : 
                     Ok(DataResponse.Success(playerFootballDtos)));
+            }
+            catch (DomainException ex)
+            {
+                return BadRequest(DataResponse.Error(ex.Errors));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, DataResponse.Error(null, ex.Message));
+            }
+        }
+
+        [HttpDelete]
+        [Route("v1/playerfootball/remove/player")]
+        [Authorize(Roles = "Administrador")]
+        public async Task<IActionResult> RemovePlayer([FromQuery] long playerId)
+        {
+            try
+            {
+                PlayerFootballDto playerFootballDto = await _playerFootballService.RemovePlayer(playerId);
+
+                return Ok(DataResponse.Success(playerFootballDto));
             }
             catch (DomainException ex)
             {

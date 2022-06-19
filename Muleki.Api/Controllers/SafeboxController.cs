@@ -86,7 +86,7 @@ namespace Muleki.Api.Controllers
             }
             catch (DomainException ex)
             {
-                return BadRequest(DataResponse.Error(ex.Errors));
+                return BadRequest(DataResponse.Error(ex.Errors, ex.Message));
             }
             catch (Exception ex)
             {

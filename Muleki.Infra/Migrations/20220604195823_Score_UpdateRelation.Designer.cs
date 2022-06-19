@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Muleki.Infra.Context;
 
@@ -11,9 +12,10 @@ using Muleki.Infra.Context;
 namespace Muleki.Infra.Migrations
 {
     [DbContext(typeof(MulekiContext))]
-    partial class MulekiContextModelSnapshot : ModelSnapshot
+    [Migration("20220604195823_Score_UpdateRelation")]
+    partial class Score_UpdateRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -36,7 +36,7 @@ namespace Muleki.Infra.Repositories
             return await _context.Set<T>()
                 .AsNoTracking()
                 .Where(x => x.Id == id)
-                .FirstAsync();
+                .FirstOrDefaultAsync();
         }
 
         public virtual async Task Remove(T entity)

@@ -69,6 +69,7 @@ MapperConfiguration cfgMapper = new MapperConfiguration(cfg =>
     cfg.CreateMap<Safebox, SafeboxDto>().ReverseMap();
 
     // PlayerFootball
+    cfg.CreateMap<PlayerFootballCreateInput, PlayerFootballDto>();
     cfg.CreateMap<PlayerFootballUpdateInput, PlayerFootballDto>();
     cfg.CreateMap<PlayerFootball, PlayerFootballDto>().ReverseMap();
 });
@@ -85,6 +86,8 @@ builder.Services.AddScoped<IFootballService, FootballService>();
 builder.Services.AddScoped<IFootballRepository, FootballRepository>();
 builder.Services.AddScoped<ISafeboxService, SafeboxService>();
 builder.Services.AddScoped<ISafeboxRepository, SafeboxRepository>();
+builder.Services.AddScoped<IPlayerFootballService, PlayerFootballService>();
+builder.Services.AddScoped<IPlayerFootballRepository, PlayerFootballRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 #endregion
 

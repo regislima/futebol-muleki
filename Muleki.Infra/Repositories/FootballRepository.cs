@@ -7,7 +7,8 @@ namespace Muleki.Infra.Repositories
 {
     public class FootballRepository : BaseRepository<Football>, IFootballRepository
     {
-        public FootballRepository(MulekiContext context, IUnitOfWork unitOfWork) : base(context, unitOfWork) { }
+        public FootballRepository(MulekiContext context, IUnitOfWork unitOfWork) : base(context, unitOfWork)
+        { }
 
         public async Task<Football> FindByDate(DateTime date)
         {

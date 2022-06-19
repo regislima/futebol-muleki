@@ -8,10 +8,13 @@ using Muleki.Service.Interfaces;
 
 namespace Muleki.Service.Services
 {
-    public class PlayerfootballService : BaseService<IPlayerFootballRepository>, IPlayerFootballService
+    public class PlayerFootballService : BaseService<IPlayerFootballRepository>, IPlayerFootballService
     {
-        public PlayerfootballService(IMapper mapper, IPlayerFootballRepository entityRepository) : base(mapper, entityRepository)
-        { }
+        private readonly IPlayerRepository _playerRepository;
+        public PlayerFootballService(IMapper mapper, IPlayerFootballRepository entityRepository, IPlayerRepository playerRepository) : base(mapper, entityRepository)
+        {
+            _playerRepository = playerRepository;
+        }
 
         public async Task<PlayerFootballDto> Create(PlayerFootballDto objDto)
         {
@@ -45,6 +48,18 @@ namespace Muleki.Service.Services
                 throw new DomainException("Partida não encontrada");
             
             await _entityRepository.Remove(playerFootball);
+
+            return _mapper.Map<PlayerFootballDto>(playerFootball);
+        }
+
+        public async Task<PlayerFootballDto> RemovePlayer(long playerId)
+        {
+            Player player = await _playerRepository.FindById(playerId);
+
+            if (player.IsNull())
+                throw new DomainException("Jogador não encontrada");
+            
+            PlayerFootball playerFootball = await _entityRepository.RemovePlayer(player);
 
             return _mapper.Map<PlayerFootballDto>(playerFootball);
         }
