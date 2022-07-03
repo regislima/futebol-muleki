@@ -15,11 +15,6 @@ namespace Muleki.Infra.Mappings
                 .UseMySqlIdentityColumn()
                 .HasColumnName("id")
                 .HasColumnType("BIGINT");
-
-            builder.Property(score => score.Date)
-                .IsRequired()
-                .HasColumnName("date")
-                .HasColumnType("DATETIME");
             
             builder.Property(score => score.Attribute)
                 .IsRequired()

@@ -6,7 +6,6 @@ namespace Muleki.Domain.Entities
 {
     public class Score : BaseEntity
     {
-        public DateTime Date { get; set; }
         public ScoreAttribute Attribute { get; set; }
         public decimal Note { get; set; }
         public long Quantity { get; set; }
